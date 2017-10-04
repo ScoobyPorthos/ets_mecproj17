@@ -16,7 +16,8 @@ D_emp = [13.32 12.14 11.61];
 
 S = mean(S_emp);
 b = mean(b_emp);
-A = b^2/S;
+%A = b^2/S;
+A = 9.3;
 longueur_totale = mean(longueur_totale_emp);
 D = mean(D_emp);
 
@@ -45,7 +46,9 @@ A, TSFC, T_loiter, Wres, Wtrap, Wpayload, range );
 Wlanding = Wto-Wfuel;
 
 %% CALCUL CHARGE ALAIRE TO
-WS_TO = Wto/S;
+%WS_TO = Wto/S;
+WS_TO = 125;
+S= Wto/WS_TO;
 
 %% CALCUL CHARGE ALAIRE LD
 WS_L = Wlanding/S;
