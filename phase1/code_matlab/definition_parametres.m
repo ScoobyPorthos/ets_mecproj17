@@ -1,5 +1,5 @@
 %% REU 02/10
-% Définition des paramètres de notre avion
+% D?finition des param?tres de notre avion
 
 clear all
 close all
@@ -22,18 +22,18 @@ longueur_totale = mean(longueur_totale_emp);
 D = mean(D_emp);
 
 %% ON DEFINIT LE PAYLOAD
-Wpayload = 70*(180+40)+3*180; %pour l'équipage on ne compte que les bagages cabine
+Wpayload = 70*(180+40)+3*180; %pour l'?quipage on ne compte que les bagages cabine
 
 %% ON DEFINIT LE RANGE
 range = 5000;
 
 %% ON DEFINIT LES MOTEURS
-% Nombre de moteurs : 2 (étude historique)
+% Nombre de moteurs : 2 (?tude historique)
 TSFC = 0.5; 
 
 %% ON DEFINIT LES PARAMETRES PAR DEFAUT
 M_cruise = 0.85;
-H_cruise = 40000; %Altitude de croisière usuelle
+H_cruise = 40000; %Altitude de croisi?re usuelle
 T_loiter=30; %30min d'attente
 Wres=0.05; % Fraction d'essence avant l'atterrisage
 Wtrap=0.01; % Fraction d'essence dans les conduites
@@ -65,8 +65,8 @@ T_Wto = T/Wto;
 % Finesse max
 F_max = finesse(M_cruise,A)
 
-% Distance d'atterissage fixée 
-SL = 4600; % Optimale : 4600 ft, Réaliste : 5900 ft
+% Distance d'atterissage fix?e 
+SL = 4600; % Optimale : 4600 ft, R?aliste : 5900 ft
 
 % Calcul du CLmax,L = CLmax
 LP = (SL - 400) / 118;
@@ -75,8 +75,13 @@ CLmax = WS_L / LP
 % Calcul du CLmax,TO
 CLmaxTO = 0.8 * CLmax
 
-% Calcul de la distance de décollage
+% Calcul de la distance de decollage
 TOP = WS_TO * (1/CLmaxTO) * (1/T_Wto);
 Sto = 20.9*TOP + 87*sqrt(TOP*T_Wto)
 
+% Calcul de la vitesse de decollage
+p = 0.0023769;
+Vto = sqrt((2*Wto)/(p*S*CLmax))
 
+% Calcul de la vitesse de decrochage
+Vs = (1/1.1)*Vto;
