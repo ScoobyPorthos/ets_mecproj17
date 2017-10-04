@@ -46,9 +46,9 @@ Wfuel=Wto-Wempty-Wpayload;
 % ---------------------------------------------------------------------
 %sortie a l'ecran
 % ---------------------------------------------------------------------
-sprintf(' %s %.0f \r %s %.0f \r %s %.0f \r %s %.0f','Wto=',Wto, ...
+%sprintf(' %s %.0f \r %s %.0f \r %s %.0f \r %s %.0f','Wto=',Wto, ...
     'Wempty=', Wempty,'Wfuel=',Wfuel)
-sprintf('%s %0.3f', 'Facteur de structure',Sfactor)
+%sprintf('%s %0.3f', 'Facteur de structure',Sfactor)
 
 % ---------------------------------------------------------------------
 % fin de la fonction principale.  Les fonctions secondaires sont definies a

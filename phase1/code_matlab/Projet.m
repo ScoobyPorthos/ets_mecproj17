@@ -1,5 +1,8 @@
 %= Main file for the calculation 
 
+iterParam(A,Wp,R,TSFC,M,H_cruse,T_loitier,Wr,Wt,WS_TO,T_Wto,Cd0,SL)
+
+%%
 %== Mission Parameter
     
     PAX = 70;   % Passager number.

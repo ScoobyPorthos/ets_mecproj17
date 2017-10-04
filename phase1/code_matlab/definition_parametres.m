@@ -8,18 +8,7 @@ clc
 %% ON DEFINIT LA GEOMETRIE
 % On moyenne sur les valeurs des trois avions semblables
 
-S_emp = [1492 1452 1345];
-b_emp = [117.8 117.5 112.6];
-A_emp = [9.300 9.500 9.423];
-longueur_totale_emp = [138.5 123.3 110.2];
-D_emp = [13.32 12.14 11.61];
-
-S = mean(S_emp);
-b = mean(b_emp);
-%A = b^2/S;
 A = 9.3;
-longueur_totale = mean(longueur_totale_emp);
-D = mean(D_emp);
 
 %% ON DEFINIT LE PAYLOAD
 Wpayload = 70*(180+40)+3*180; %pour l'équipage on ne compte que les bagages cabine
@@ -54,16 +43,15 @@ S= Wto/WS_TO;
 WS_L = Wlanding/S;
 
 %% ON DETERMINE LA POUSSEE
-T = Wto*0.35;% Cours 3, valeurs typiques longues distances
-
-%% RATIO POUSSEE POIDS
-T_Wto = T/Wto;
-
-
+T_Wto = 0.35; % RATIO POUSSEE POIDS
+T = Wto*T_Wto;% Cours 3, valeurs typiques longues distances
 
 %% AERODYNAMIQUE/PERFORMANCE
 % Finesse max
-F_max = finesse(M_cruise,A)
+Cd0 = 0.015;
+%F_max = finesse(M_cruise,A);
+F_max = sqrt(1/(4*0.015*k_oswald(9.3,0.8))); %par methode d'oswald 
+
 
 % Distance d'atterissage fixée 
 SL = 4600; % Optimale : 4600 ft, Réaliste : 5900 ft
