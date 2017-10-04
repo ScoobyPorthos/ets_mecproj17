@@ -6,18 +6,12 @@ close all
 clc 
 
 %% ON DEFINIT LA GEOMETRIE
-% On moyenne sur les valeurs des trois avions semblables
-
-S_emp = [1492 1452 1345];
-b_emp = [117.8 117.5 112.6];
+% 
 A_emp = [9.300 9.500 9.423];
+A = mean(A_emp);
+
 longueur_totale_emp = [138.5 123.3 110.2];
 D_emp = [13.32 12.14 11.61];
-
-S = mean(S_emp);
-b = mean(b_emp);
-%A = b^2/S;
-A = 9.3;
 longueur_totale = mean(longueur_totale_emp);
 D = mean(D_emp);
 
@@ -49,6 +43,9 @@ Wlanding = Wto-Wfuel;
 %WS_TO = Wto/S;
 WS_TO = 125;
 S= Wto/WS_TO;
+
+%% ON DEFINIT b
+b = sqrt(A*S);
 
 %% CALCUL CHARGE ALAIRE LD
 WS_L = Wlanding/S;
