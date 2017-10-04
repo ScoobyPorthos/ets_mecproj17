@@ -21,8 +21,8 @@ function [ Wto, Wfuel, Wempty ] = itertow( Type, M_cruise, H_cruise, ...
 % ---------------------------------------------------------------------
 % Ces valeurs sont retournees par la fonction
 % ---------------------------------------------------------------------
-% Wto : poids total au dÃ©collage, lbf
-% Wfuel : poids d'essence au dÃ©collage, lbf
+% Wto : poids total au décollage, lbf
+% Wfuel : poids d'essence au décollage, lbf
 % Wempty : poids a vide, sans charge payante, lbf
 
 % ---------------------------------------------------------------------
@@ -149,4 +149,3 @@ sprintf('%s %0.3f', 'Facteur de structure',Sfactor)
 
     end
 end
-
