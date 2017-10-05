@@ -16,7 +16,9 @@ longueur_totale = mean(longueur_totale_emp);
 D = mean(D_emp);
 
 %% ON DEFINIT LE PAYLOAD
-Wpayload = 70*(180+40)+3*180; %pour l'?quipage on ne compte que les bagages cabine
+poids_passager = 180;
+poids_bagage = 60;
+Wpayload = 70*(poids_passager+poids_bagage)+3*poids_passager; %pour l'?quipage on ne compte que les bagages cabine
 
 %% ON DEFINIT LE RANGE
 range = 5000;
@@ -63,7 +65,7 @@ T_Wto = T/Wto;
 F_max = finesse(M_cruise,A)
 
 % Distance d'atterissage fix?e 
-SL = 4600; % Optimale : 4600 ft, R?aliste : 5900 ft
+SL = 5300; % Optimale : 4600 ft, R?aliste : 5900 ft
 
 % Calcul du CLmax,L = CLmax
 LP = (SL - 400) / 118;
