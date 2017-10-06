@@ -78,9 +78,9 @@ CLmaxTO = 0.8 * CLmax
 TOP = WS_TO * (1/CLmaxTO) * (1/T_Wto);
 Sto = 20.9*TOP + 87*sqrt(TOP*T_Wto)
 
-% Calcul de la vitesse de decollage
-p = 0.0023769;
-Vto = sqrt((2*Wto)/(p*S*CLmax))
-
 % Calcul de la vitesse de decrochage
-Vs = (1/1.1)*Vto;
+p = 0.0023769;
+Vs = sqrt((2*Wto)/(p*S*CLmaxTO))
+
+% Calcul de la vitesse de decollage
+Vto = 1.1*Vs
