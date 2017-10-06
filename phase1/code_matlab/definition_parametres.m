@@ -80,7 +80,7 @@ Sto = 20.9*TOP + 87*sqrt(TOP*T_Wto)
 
 % Calcul de la vitesse de decrochage
 p = 0.0023769;
-Vs = sqrt((2*Wto)/(p*S*CLmaxTO))
+Vs = sqrt((2*Wto)/(p*S*CLmax))
 
 % Calcul de la vitesse de decollage
 Vto = 1.1*Vs
