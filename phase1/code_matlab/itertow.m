@@ -21,8 +21,8 @@ function [ Wto, Wfuel, Wempty ] = itertow( Type, M_cruise, H_cruise, ...
 % ---------------------------------------------------------------------
 % Ces valeurs sont retournees par la fonction
 % ---------------------------------------------------------------------
-% Wto : poids total au dÃ©collage, lbf
-% Wfuel : poids d'essence au dÃ©collage, lbf
+% Wto : poids total au décollage, lbf
+% Wfuel : poids d'essence au décollage, lbf
 % Wempty : poids a vide, sans charge payante, lbf
 
 % ---------------------------------------------------------------------
@@ -46,9 +46,9 @@ Wfuel=Wto-Wempty-Wpayload;
 % ---------------------------------------------------------------------
 %sortie a l'ecran
 % ---------------------------------------------------------------------
-%sprintf(' %s %.0f \r %s %.0f \r %s %.0f \r %s %.0f','Wto=',Wto, ...
+sprintf(' %s %.0f \r %s %.0f \r %s %.0f \r %s %.0f','Wto=',Wto, ...
     'Wempty=', Wempty,'Wfuel=',Wfuel)
-%sprintf('%s %0.3f', 'Facteur de structure',Sfactor)
+sprintf('%s %0.3f', 'Facteur de structure',Sfactor)
 
 % ---------------------------------------------------------------------
 % fin de la fonction principale.  Les fonctions secondaires sont definies a
@@ -149,4 +149,3 @@ Wfuel=Wto-Wempty-Wpayload;
 
     end
 end
-
