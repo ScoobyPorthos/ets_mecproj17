@@ -31,6 +31,7 @@ TSFC = 0.5;
 %% ON DEFINIT LES PARAMETRES PAR DEFAUT
 M_cruise = 0.85;
 H_cruise = 32e3; %Altitude de croisi?re usuelle
+
 T_loiter=30; %30min d'attente
 Wres=0.05; % Fraction d'essence avant l'atterrisage
 Wtrap=0.01; % Fraction d'essence dans les conduites
@@ -81,6 +82,7 @@ F_max = 1/sqrt(4*1/(pi*A*0.8)*Cd0)
 % Distance d'atterissage fix?e 
 SL = 4400; % Optimale : 4600 ft, R?aliste : 5900 ft
 
+
 % Calcul du CLmax,L = CLmax
 LP = (SL - 400) / 118;
 CLmax = WS_L / LP
@@ -112,7 +114,7 @@ for i=1:size(DOE,1)
 end
 figure(1)
 interactionplot(W(:,1)/1E3,DOE,'varnames',{'Range','PAX','H Cruise'});
-title('Influence des Paramètres de mission sur le Poids au décollage W_{to} x1000')
+title('Influence des Paramï¿½tres de mission sur le Poids au dï¿½collage W_{to} x1000')
 figure(2)
 interactionplot(W(:,2)/1E3,DOE,'varnames',{'Range','PAX','H Cruise'});
-title('Influence des Paramètres de mission sur le Poids de fuel W_{f} x1000')
+title('Influence des Paramï¿½tres de mission sur le Poids de fuel W_{f} x1000')
