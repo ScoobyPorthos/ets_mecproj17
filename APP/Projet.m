@@ -59,4 +59,29 @@ Atop= 4.5*3.28; %(ft)
 k_surface = 2.08e-5; % (ft) etat de surface / rugosite
 Q_fuselage = 1;
 
+%== TRainée d'onde
+Ma_DD_Cl0 = 0.8085; % après lecture graphique du diagrame p36@cours5
+coeff_dC_d_M = [1 3 1.1];
 
+
+%== Empengage
+
+C_VT = 0.09; % Valeur du cours 6
+lvt = 2/4*l;%(ft) a changer avec les valeurs du cad
+AR_VT = 5; % Cours 6, p28 type autre
+effilement_vt = 0.6;
+Angle_fleche_VT  = AngflecheLe; % A modifier
+Angle_tcmax_VT = 0.47; % A Modifier !
+Q_vt = 1.05;
+xcm_vt= 0.25; %NACA 0014
+tc_vt= 0.14; %NACA 0014
+
+C_HT = 1.00; % Valeur du cours 6
+lht = 2/4*l;%(ft) idem
+AR_HT = 5; % Cours 6, p28 type autre
+effilement_ht = 0.6;
+Angle_fleche_HT  = AngflecheLe; % A modifier
+Angle_tcmax_HT = 0.47; % A Modifier !
+Q_ht = 1.05;
+xcm_ht= 0.25; %NACA 0014
+tc_ht= 0.14; %NACA 0014
