@@ -96,10 +96,10 @@ end
     fprintf('|   = Poids Takeoff : %f	\n',Wto);
 
 %== Aerodynamique 
-WS_L = Wlanding/S; % Charge à l'aire à l'attérissage
-WS_TO = Wto/S; %Charge à l'aire au décollage
-SL = 4400; %% Distance d'atterissage fixée Optimale : 4600 ft, Réaliste : 5900 ft
-CLmax = WS_L / ((SL - 400) / 118);  % Calcul du CLmax,L = CLmax
+WS_L = Wlanding/S;                      % Charge à l'aire à l'attérissage
+WS_TO = Wto/S;                          %Charge à l'aire au décollage
+SL = 4400;                              % Distance d'atterissage fixée Optimale : 4600 ft, Réaliste : 5900 ft
+CLmax = WS_L / ((SL - 400) / 118);      % Calcul du CLmax,L = CLmax
 
 % Calcul du CLmax,TO
 CLmaxTO = 0.8 * CLmax;

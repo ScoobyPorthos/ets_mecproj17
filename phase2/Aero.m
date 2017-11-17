@@ -29,15 +29,15 @@ fprintf('\n--- Portance de l aile (H_cruise)---\n');
 mu =@(T)((8.8848e-15*(T^3)-3.2398e-11*(T^2)+6.2657e-8*T+2.3543e-6)/9.81)*(1/3.28)^2*2.2048;%(lb.sec/ft^2)
 T = tempatmstd(H_cruise);
 
-Angle_fleche_Le=30*2*pi()/360;   %angle de flèche historique réduisant le nombre de Mach effectif (rad)
-Effilement=0.17;    %effilement minimisant la trainée induite pour une aile trapézoïdale
-b=sqrt(S*A);        %envergure
-Cr = 2*b/(A*(1+Effilement));    %corde à la base de l'aile
-Ct = Effilement*Cr;             %corde en bout d'aile
+Angle_fleche_Le=30*2*pi()/360;      %angle de flèche historique réduisant le nombre de Mach effectif (rad)
+Effilement=0.17;                    %effilement minimisant la trainée induite pour une aile trapézoïdale
+b=sqrt(S*A);                        %envergure
+Cr = 2*b/(A*(1+Effilement));        %corde à la base de l'aile
+Ct = Effilement*Cr;                 %corde en bout d'aile
 Cmoy = 2*Cr/3*(1+Effilement+Effilement^2)/(1+Effilement);
 
-Angle_fleche_c4 = atan(tan(Angle_fleche_Le)-Cr/(2*b)*(1-Effilement));  %angle de flèche au quart de la corde (rad)
-Angle_fleche_c2 = atan(tan(Angle_fleche_Le)-Cr/b*(1-Effilement));  %angle de flèche au mileu de la corde (rad)
+Angle_fleche_c4 = atan(tan(Angle_fleche_Le)-Cr/(2*b)*(1-Effilement));   %angle de flèche au quart de la corde (rad)
+Angle_fleche_c2 = atan(tan(Angle_fleche_Le)-Cr/b*(1-Effilement));       %angle de flèche au mileu de la corde (rad)
 
 fprintf('| * Géonemtrie\n');
 fprintf('|   + Envergure : %f\n',b);
@@ -83,7 +83,7 @@ Q = 1; %Aile basse avec congé de raccordement
 Remoy = rho*Cmoy*Vmoy/mu(T);
 fprintf('| * Re = %d \n',Remoy);
 
-Cf = 0.455/(log(Remoy)^2.58*(1+0.144*(M_real*cos(Angle_fleche_Le))^2)^0.65);   %Coefficient de friction d'une plaque plane
+Cf = 0.455/((log(Remoy)/log(10))^2.58*(1+0.144*(M_real*cos(Angle_fleche_Le))^2)^0.65);   %Coefficient de friction d'une plaque plane
 Angle_fleche_epmax=Angle_fleche_Le;  %Solidworks ?
 epmax = 12/100; %ratio d'épaisseur max du profil
 xcm = 40/100;   %position sur la corde du point d'épaisseur max
@@ -109,7 +109,7 @@ fprintf('|   + Diamètre equivalant (ft): %f\n',d);
 k_surface = 2.08e-5; % (ft) etat de surface / rugosite
 Re_eff = 38.21*(l/k_surface)^1.053; % Reynolds effectif / rugosite (M<1)
 Re = min([rho*l*Vmoy/mu(T) Re_eff]);
-Cf = 0.455/(log(Re)^2.58*(1+0.144*(M_real)^2)^0.65);
+Cf = 0.455/((log(Re)/log(10))^2.58*(1+0.144*(M_real)^2)^0.65);
 Q_fuselage = 1;
 FF_fuselage = 1+60/(l/d)^3+l/(400*d);
 Swet_fuselage = pi()*((Aside+Atop)/2)*l;
@@ -160,13 +160,13 @@ end
 plot(Dw_pts(1,:),Dw_pts(2,:),'k+');
 
 [diff_cruise,I]=sort(abs(Dw_pts(1,:)-M_cruise));
-Cdw = P_coeff(I(1),1)*(M_cruise-Dw_pts(1,I(1)))^3+P_coeff(I(1),2)*(M_cruise-Dw_pts(1,I(1)))^2+P_coeff(I(1),3)*(M_cruise-Dw_pts(1,I(1)))+P_coeff(I(1),4);
-plot(M_cruise,Cdw,'dr');
+Cdw = P_coeff(I(1),1)*(M_real-Dw_pts(1,I(1)))^3+P_coeff(I(1),2)*(M_real-Dw_pts(1,I(1)))^2+P_coeff(I(1),3)*(M_real-Dw_pts(1,I(1)))+P_coeff(I(1),4);
+plot(M_real,Cdw,'dr');
 grid on;
 hold off;
 fprintf('| * March Critique  = %f \n',Ma_critique);
 fprintf('| * March DD  = %f \n',Ma_DD);
-fprintf('| * March Croissière  = %f \n',M_cruise);
+fprintf('| * March Croissière  = %f \n',M_real);
 fprintf('| * Cdw  = %f \n',Cdw);
 
 
@@ -194,7 +194,7 @@ fprintf('| * Empenage Horizontal = NACA0014\n');
 AR_HT = 5; % Cours 6, p28 type autre
 effilement_ht = 0.6;
 b_ht = sqrt(AR_HT*S_HT);
-cr_ht = 2*S_HT/(b*(1+effilement_ht));
+cr_ht = 2*S_HT/(b_ht*(1+effilement_ht));
 ct_ht = effilement_ht*cr_ht;
 Cmoy_HT = 2*cr_ht/3*(1+effilement_ht+effilement_ht^2)/(1+effilement_ht);
 
@@ -218,10 +218,10 @@ fprintf('|   + Effet d interférence = %f \n',Q_ht);
 fprintf('|   + x/c max = %f \n',xcm_ht);
 fprintf('|   + t/c max = %f \n',tc_ht);
 
-Cf = 0.455/(log(Remoy)^2.58*(1+0.144*(M_real*cos(Angle_fleche_HT))^2)^0.65);
+Cf = 0.455/((log(Remoy)/log(10))^2.58*(1+0.144*(M_real*cos(Angle_fleche_HT))^2)^0.65);
 Ff_H = 1.10*(1+0.6/xcm_ht*tc_ht+100*(tc_ht)^4)*(1.34*M_cruise^0.18*(cos(Angle_fleche_tcmax_HT))^0.28);
 Swet_ht = S*(1.977+0.52*(tc_ht));
-CD0_ht = Cf*Ff_H*Q_ht*Swet_ht/S_HT;
+CD0_ht = Cf*Ff_H*Q_ht*Swet_ht/S;
 
 fprintf('|   = CD0 = %f \n',CD0_ht);
 
@@ -231,7 +231,7 @@ fprintf('| * Empenage Vertical = NACA0014\n');
 AR_VT = 5; % Cours 6, p28 type autre
 effilement_vt = 0.6;
 b_vt = sqrt(AR_VT*S_VT);
-cr_vt = 2*S_VT/(b*(1+effilement_vt));
+cr_vt = 2*S_VT/(b_vt*(1+effilement_vt));
 ct_vt = effilement_vt*cr_vt;
 Cmoy_VT = 2*cr_vt/3*(1+effilement_vt+effilement_vt^2)/(1+effilement_vt);
 Remoy = rho*Cmoy_VT*Vmoy/mu(T);
@@ -254,10 +254,10 @@ fprintf('|   + Effet d interférence = %f \n',Q_vt);
 fprintf('|   + x/c max = %f \n',xcm_vt);
 fprintf('|   + t/c max = %f \n',tc_vt);
 
-Cf = 0.455/(log(Remoy)^2.58*(1+0.144*(M_real*cos(Angle_fleche_VT))^2)^0.65);
-Ff_V = 1.10*(1+0.6/xcm_vt*tc_vt+100*(tc_vt)^4)*(1.34*M_cruise^0.18*(cos(Angle_fleche_tcmax_VT))^0.28);
+Cf = 0.455/((log(Remoy)/log(10))^2.58*(1+0.144*(M_real*cos(Angle_fleche_VT))^2)^0.65);
+Ff_V = 1.10*(1+0.6/xcm_vt*tc_vt+100*(tc_vt)^4)*(1.34*M_real^0.18*(cos(Angle_fleche_tcmax_VT))^0.28);
 Swet_vt = S*(1.977+0.52*(tc_vt));
-CD0_vt = Cf*Ff_V*Q_vt*Swet_vt/S_VT;
+CD0_vt = Cf*Ff_V*Q_vt*Swet_vt/S;
 
 fprintf('|   = CD0 = %f \n',CD0_vt);
 
