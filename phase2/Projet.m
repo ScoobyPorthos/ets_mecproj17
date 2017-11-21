@@ -21,10 +21,10 @@
     Charge_Ailaire=120;  %Charge Ailaire en Croisière (lb/ft^2)
     Pol =  importdata('xf-naca4412-il-1000000-n5.txt');
     
-    Thrust_tot = 46000;
+    Thrust_tot = 70000;
     TSFC = 0.5;
     C = TSFC;
-    CLmaxTo=2.5;
+    CLmaxTO=2.5;
     
     tx_montee = 0.03;   %train d'atterissage rentré, un moteur en moins (%)
     gamma_montee = atan(tx_montee);
@@ -72,7 +72,7 @@
    Vmoy = sqrt(2/rho*Wmoy/S)*(3*k/CD0)^0.25;    %vitesse moyenne lors du vol (ft/s)
    Vmach=M_cruise*sqrt(1.4*1716.5*T*9/5);       %vitesse désirée pour le Mach du choix de designer (ft/s)
    
-while Vmoy/Vmach > 1.02;                         %While qui décroit l'altitude moyenne pour rapprocher la vitesse moyenne du vol au mach de designer
+while Vmoy/Vmach > 1.02                         %While qui décroit l'altitude moyenne pour rapprocher la vitesse moyenne du vol au mach de designer
     H_cruise = H_cruise - 20;
     [ Wto, Wfuel, Wempty ] = itertow('jet-transport',M_cruise, H_cruise, A, TSFC, T_loiter, Fuel_res, Fuel_trap, Wpayload,CD0, Range);
     Wlanding = Wempty + Wfuel*(Fuel_res+Fuel_trap)+Wpayload;
@@ -102,7 +102,7 @@ SL = 4400;                              % Distance d'atterissage fixée Optimale 
 CLmax = WS_L / ((SL - 400) / 118);      % Calcul du CLmax,L = CLmax
 
 % Calcul du CLmax,TO
-CLmaxTO = 0.8 * CLmax;
+%CLmaxTO = 0.8 * CLmax;
 
 % Calcul de la distance de decollage
 T_Wto = Thrust_tot/Wto;
@@ -125,7 +125,7 @@ ratio=(Thrust_tot/(2*Wto))/(tx_montee+sqrt(CD0*k));% verif puissance avec panne 
     fprintf('| * Vitesse de décrochage (ft/s): %f\n',Vs);
     fprintf('| * Vitesse de décollage (ft/s): %f\n',Vto);
     
-if ratio<1;
+if ratio<1
     fprintf('| = l avion n a pas suffisament de puissance pour décoler \n');
 else
     fprintf('| = l avion a suffisament de puissance pour décoler \n');

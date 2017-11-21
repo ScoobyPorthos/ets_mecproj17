@@ -1,0 +1,21 @@
+Aero;
+
+%% Estimation détaillée du décollage
+
+% Distance de parcourt au sol : sG
+
+g = 32.2;
+Mu_decollage = 0.05;                %cas pessimiste Asphate Mouillée
+f1 = Thrust_tot/Wto - Mu_decollage;
+rho_decollage = 0.0023769;
+C_lg = 0.1;                                        % Cours 8 Diapo 16
+dCD0_flap = 0.05;                                  % Cours 8 Diapo 17 => Plain 30° => A MODIFIER P-E !
+A_lg = ((0.675*0.19)*2+(1*0.355)*4)*3.28^2;        % Aire frontale de 4 + 2 pneux de Boeing 737
+dCD0_lg = 1.4*(A_lg/S);                            % Cours 8 Diapo 17 => Boggie => A MODIFIER P-E !
+f2 = (rho_decollage/(2*(Wto/S)))*(Mu_decollage*C_lg - CD0_avion - k*C_lg^2 - dCD0_flap - dCD0_lg)
+
+sG = (1/(2*g*f2))*log(1 + (f2*Vto^2)/f1)
+fprintf('| * Distance parcourue au sol : %f               \n',PAX);
+% Distance pendant la rotation : sR
+
+sR = 3*Vto; % 2 ou 2.5 ? avion moyen
